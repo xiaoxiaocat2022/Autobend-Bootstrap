@@ -52,12 +52,9 @@
       <br />
       <br /><br />
       <footer class="info">
-        <p>Double-click to edit a todo</p>
-        <!-- Remove the below line ↓ -->
-        <p>Template by <a href="javascript:;">Sindre Sorhus</a></p>
-        <!-- Change this out with your name and url ↓ -->
-        <p>Created by <a href="javascript:;">you</a></p>
-        <p>Part of <a href="javascript:;">TodoMVC</a></p>
+        <p>Double-click to edit a job list</p>
+        <p>Created by <a href="javascript:;">Chen</a></p>
+        <p>Part of <a href="javascript:;">AutoBend</a></p>
       </footer>
     </div>
 
@@ -82,9 +79,56 @@
                 <th scope="col">Actions</th>
               </tr>
             </thead>
+            {{each bindlist v}}
+            <tr>
+              <th scope="row">{{v.jobNo}}</th>
+              <td class="{{v.isFinish && "completed"}} {{v.isEdit && 'editing'}}">{{v.customer}}</td>
+              <td class="{{v.isFinish && "completed"}} {{v.isEdit && 'editing'}}">{{v.jobName}}</td>
+              <td class="{{v.isFinish && "completed"}} {{v.isEdit && 'editing'}}">{{v.qty}}</td>
+              <td class="{{v.isFinish && "completed"}} {{v.isEdit && 'editing'}}">{{v.process}}</td>
+              <td class=" {{(!v.materialIsReady & !v.materialIsOrdered) && "text-danger h6"}} {{v.isFinish && "completed"}} {{v.isEdit && 'editing'}}">{{v.material}} 
+                 <button type="button" class="btn {{v.materialIsReady ? "btn-success" : "btn-secondary"}} btn-sm p-0 lh-1 align-baseline">RD</button>
+                <button type="button" class="btn {{v.materialIsOrdered ? "btn-info" : "btn-secondary"}} btn-sm p-0 lh-1 ms-1 align-baseline">OD</button></td>
+
+              <td class=" {{(!v.mandrelIsReady & !v.mandrelIsOrdered) && "table-danger"}}">
+                  <button type="button" class="btn {{v.mandrelIsReady ? "btn-success" : "btn-secondary"}} btn-sm p-0 lh-1 align-baseline">RD</button>
+                 <button type="button" class="btn {{v.mandrelIsOrdered ? "btn-info" : "btn-secondary"}} btn-sm p-0 lh-1 ms-1 align-baseline">OD</button></td>
+              <td>
+                
+                <button type="button" class="btn btn-info btn-sm p-0 lh-1 align-baseline">Edit</i></button>
+              <button type="button" class="btn btn-danger btn-sm p-0 lh-1 align-baseline">Done</i></button>
+              <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8593</i></button>
+              <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8595</i></button>
+              </td>
+            </tr>
+            {{/each}}
             
             </tbody>
           </table>
+          <footer class="footer">
+            <!-- This should be `0 items left` by default -->
+            <!-- 有多少条未完成的 todo -->
+            <span class="todo-count"><strong>{{activeNum}}</strong> item left</span>
+            <!-- Remove this if you don't implement routing -->
+            <!-- 切换显示状态 -->
+            <ul class="filters">
+              <li>
+                <a class="{{type==='all' && 'selected'}}" href="#/">All</a>
+              </li>
+              <li>
+                <a class="{{type==='active' && 'selected'}}" href="#/active">Active</a>
+              </li>
+              <li>
+                <a class="{{type==='completed' && 'selected'}}" href="#/completed">Completed</a>
+              </li>
+            </ul>
+            <!-- Hidden if no completed items are left ↓ -->
+            <!-- 删除所有已完成 -->
+            <!-- 默认隐藏, 只要由任何一个已完成, 就会显示 -->
+            {{if activeNum !==length}}
+            <button class="clear-completed">Clear completed</button>
+            {{/if}}
+          </footer>
         </div>
         <div id="CSM38" class="container tab-pane fade"><br>
           <h3>CSM 38</h3>
@@ -92,153 +136,16 @@
             <thead>
               <tr>
                 <th scope="col">5555o.</th>
-               
               </tr>
             </thead>
       </div>
+
+  
     </script>
     <script src="js/app.js"></script>
 
     <!-- <div class="container mt-3">
-  <section class="header">
-    <div class="thumbnail row" style="border:none; background:white;">
-
-      <div class="col-sm-4  float-sm-start" style="text-align:center;">
-        <img class="img-fluid" src="./img/autobend.png" style="height:70px;" />
-      </div>
-    
-      <div class="col-sm align-self-center" style="display:block">  
-    
-        <h2 class="text-wrap align-self-center text-center "> Ak Production Schedule</h2>
-     
-      </div>
-      </div>
-
-  </section>
-  <br>
-
-  <ul class="nav nav-pills" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" data-bs-toggle="pill" href="#CSM100">CSM100</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="pill" href="#CSM38">CSM38</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="pill" href="#ENG">ENG</a>
-    </li>
-  </ul>
-
-
-  <div class="tab-content">
-    <div id="CSM100" class="container-sm tab-pane active"><br>
-      <h3>CSM 100</h3>
-      <table class="table table-bordered table-striped table-responsive-sm p-0">
-        <thead>
-          <tr>
-            <th scope="col">No.</th>
-            <th scope="col">Customer</th>
-            <th scope="col">Job</th>
-            <th scope="col">Qty.</th>
-            <th scope="col">Process</th>
-            <th scope="col">Material</th>
-            <th scope="col">Mandrel</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Flip Farm</td>
-            <td>Infeed Top Frame</td>
-            <td>10</td>
-            <td>33066S</td>
-            <td>L6P025NB27   <button type="button" class="btn btn-success btn-sm p-0 lh-1 align-baseline">RD</button>
-              <button type="button" class="btn btn-warning btn-sm p-0 lh-1 ms-1 align-baseline">OD</button></td>
-            <td>
-              <button type="button" class="btn btn-success btn-sm p-0 lh-1 align-baseline">RD</button>
-              <button type="button" class="btn btn-light btn-sm p-0 lh-1 ms-1 align-baseline">OD</button>
-            
-            </td>
-            <td>
-              
-              <button type="button" class="btn btn-info btn-sm p-0 lh-1 align-baseline">Edit</i></button>
-            <button type="button" class="btn btn-danger btn-sm p-0 lh-1 align-baseline">Done</i></button>
-            <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8593</i></button>
-            <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8595</i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th scope="row">2</th>
-            <td>ZWH</td>
-            <td>S4076N76</td>
-            <td>10</td>
-            <td>33066S</td>
-            <td>L6P025NB27   <button type="button" class="btn btn-success btn-sm p-0 lh-1 align-baseline">RD</button>
-              <button type="button" class="btn btn-warning btn-sm p-0 lh-1 ms-1 align-baseline">OD</button></td>
-            <td>
-              <button type="button" class="btn btn-success btn-sm p-0 lh-1 align-baseline">RD</button>
-              <button type="button" class="btn btn-light btn-sm p-0 lh-1 ms-1 align-baseline">OD</button>
-            
-            </td>
-            <td>
-              
-              <button type="button" class="btn btn-info btn-sm p-0 lh-1 align-baseline">Edit</i></button>
-            <button type="button" class="btn btn-danger btn-sm p-0 lh-1 align-baseline">Done</i></button>
-            <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8593</i></button>
-            <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8595</i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th scope="row">3</th>
-            <td>IMG001</td>
-            <td>TEST 2</td>
-            <td>10</td>
-            <td>33066S</td>
-            <td>L6P025NB27   <button type="button" class="btn btn-success btn-sm p-0 lh-1 align-baseline">RD</button>
-              <button type="button" class="btn btn-warning btn-sm p-0 lh-1 ms-1 align-baseline">OD</button></td>
-            <td>
-              <button type="button" class="btn btn-success btn-sm p-0 lh-1 align-baseline">RD</button>
-              <button type="button" class="btn btn-light btn-sm p-0 lh-1 ms-1 align-baseline">OD</button>
-            
-            </td>
-            <td>
-              
-              <button type="button" class="btn btn-info btn-sm p-0 lh-1 align-baseline">Edit</i></button>
-            <button type="button" class="btn btn-danger btn-sm p-0 lh-1 align-baseline">Done</i></button>
-            <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8593</i></button>
-            <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8595</i></button>
-            </td>
-          </tr>
-
-          <tr>
-            <th scope="row">4</th>
-            <td>Flip Farm</td>
-            <td>Outfeed Top Frame</td>
-            <td>10</td>
-            <td>33066S</td>
-            <td>L6P025NB27   <button type="button" class="btn btn-success btn-sm p-0 lh-1 align-baseline">RD</button>
-              <button type="button" class="btn btn-warning btn-sm p-0 lh-1 ms-1 align-baseline">OD</button></td>
-            <td>
-              <button type="button" class="btn btn-success btn-sm p-0 lh-1 align-baseline">RD</button>
-              <button type="button" class="btn btn-light btn-sm p-0 lh-1 ms-1 align-baseline">OD</button>
-            
-            </td>
-            <td>
-              
-              <button type="button" class="btn btn-info btn-sm p-0 lh-1 align-baseline">Edit</i></button>
-            <button type="button" class="btn btn-danger btn-sm p-0 lh-1 align-baseline">Done</i></button>
-            <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8593</i></button>
-            <button type="button" class="btn btn-secondary btn-sm p-0 lh-1 align-baseline px-1">&#8595</i></button>
-            </td>
-          </tr>
-          
-        </tbody>
-      </table>
-    </div>
-
+  
     <div id="CSM38" class="container tab-pane fade"><br>
       <h3>CSM 38</h3>
       <table class="table table-bordered table-striped table-responsive-sm p-0">
