@@ -160,13 +160,13 @@ var list = [
     isEdit: false
   },
 ];
-
+//var list = JSON.parse(window.localStorage.getItem('todos'))||[];
 var type="all";
 //box = container
 var box = document.querySelector(".todoapp");
 // box.innerHTML = template("tmp", {});
 bindHtml();
-// 2 准备渲染函数
+// 2 Render function
 function bindHtml() {
   var bindlist = list;
 
@@ -196,5 +196,5 @@ function bindHtml() {
     type: type,
   });
   console.log(bindlist);
-  // window.localStorage.setItem('todos',JSON.stringify(list));
+  window.localStorage.setItem('todos',JSON.stringify(list));
 }

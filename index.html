@@ -105,28 +105,22 @@
             
             </tbody>
           </table>
-          <footer class="footer">
+          <footer class="footer d-inline-flex float-end ">
             <!-- This should be `0 items left` by default -->
             <!-- 有多少条未完成的 todo -->
-            <span class="todo-count"><strong>{{activeNum}}</strong> item left</span>
+            <span class="todo-count m-auto"> Job left<span class="badge bg-info rounded-pill ">{{activeNum}}</span></span>
             <!-- Remove this if you don't implement routing -->
             <!-- 切换显示状态 -->
-            <ul class="filters">
-              <li>
-                <a class="{{type==='all' && 'selected'}}" href="#/">All</a>
-              </li>
-              <li>
-                <a class="{{type==='active' && 'selected'}}" href="#/active">Active</a>
-              </li>
-              <li>
-                <a class="{{type==='completed' && 'selected'}}" href="#/completed">Completed</a>
-              </li>
-            </ul>
+            <div class="filters list-group list-group-horizontal ms-5">
+                <a class="list-group-item list-group-item-action {{type==='all' && 'selected'}}" href="#/">All</a>
+                <a class=" list-group-item list-group-item-action {{type==='active' && 'selected'}}" href="#/active">Active</a>
+                <a class="list-group-item list-group-item-action {{type==='completed' && 'selected'}}" href="#/completed">Completed</a>
+            </div>
             <!-- Hidden if no completed items are left ↓ -->
             <!-- 删除所有已完成 -->
             <!-- 默认隐藏, 只要由任何一个已完成, 就会显示 -->
             {{if activeNum !==length}}
-            <button class="clear-completed">Clear completed</button>
+            <button class="clear-completed btn-danger ms-3">Clear completed</button>
             {{/if}}
           </footer>
         </div>
