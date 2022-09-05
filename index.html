@@ -109,13 +109,15 @@
             {{/each}}
             <tr>
               <th scope="row">New</th>
-              <td class="col-1"><input type="text" class="form-control-sm form-control-plaintext" placeholder="Customer"></td>
-              <td class="col"><input type="text" class="form-control-sm form-control-plaintext" placeholder="Job"></td>
-              <td class="col-1"><input type="text" class="form-control-sm form-control-plaintext" placeholder="Qty"></td>
-              <td class="col-1"><input type="text" class="form-control-sm form-control-plaintext" placeholder="Process"></td>
-              <td class="col"><input type="text" class="form-control-sm form-control-plaintext" placeholder="Material"></td>
+              <form>
+              <td class="col-1"><input type="text" class="form-control-sm form-control-plaintext" id="customer" placeholder="Customer"></td>
+              <td class="col"><input type="text" class="form-control-sm form-control-plaintext" id="job" placeholder="Job"></td>
+              <td class="col-1"><input type="text" class="form-control-sm form-control-plaintext" id="qty" placeholder="Qty"></td>
+              <td class="col-1"><input type="text" class="form-control-sm form-control-plaintext" id="process" placeholder="Process"></td>
+              <td class="col"><input type="text" class="form-control-sm form-control-plaintext" id="material" placeholder="Material"></td>
               <td class="col"></td>
-              <td class="col"></td>
+              <td class="col align-content-center"> <button type="submit" data-key="add" data-type="A" class="btn btn-primary btn-sm p-1 lh-1 align-bottom ms-3  ">&nbsp Add &nbsp</button></td>
+            </form>
 
             </tbody>
           </table>
@@ -124,15 +126,14 @@
             <!-- 有多少条未完成的 todo -->
             <span class="todo-count m-auto"> Job left<span class="badge bg-info rounded-pill ">{{activeANum}}</span></span>
             <!-- Remove this if you don't implement routing -->
-            <!-- 切换显示状态 -->
+    
             <div class="filters list-group list-group-horizontal ms-5">
                 <a class="list-group-item list-group-item-action {{type==='all' && 'selected'}}" href="#/">All</a>
                 <a class=" list-group-item list-group-item-action {{type==='active' && 'selected'}}" href="#/active">Active</a>
                 <a class="list-group-item list-group-item-action {{type==='completed' && 'selected'}}" href="#/completed">Completed</a>
             </div>
             <!-- Hidden if no completed items are left ↓ -->
-            <!-- 删除所有已完成 -->
-            <!-- 默认隐藏, 只要由任何一个已完成, 就会显示 -->
+       
             {{if activeANum !==aLength}}
             <button data-key="clear-completed" data-type="A" class="clear-completed btn-danger ms-3">Clear completed</button>
             {{/if}}

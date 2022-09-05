@@ -367,6 +367,36 @@ box.addEventListener("click", function (e) {
    list=list.filter(t=>(t.jobType==target.dataset.type && !t.isFinish))
         bindHtml();
   }
+  if (target.dataset.key === "add") {
+   
+    let customer= getElementById("customer").value.trim();
+    .value.trim();
+    jobType: "B",
+    jobNo: 0,
+    customer: "Flip Farm",
+    jobName: "Infeed Top Frame",
+    qty: 10,
+    process: "33066S",
+    material: "L6P025NB27",
+    materialIsReady: false,
+    materialIsOrdered: false,
+    mandrelIsReady: false,
+    mandrelIsOrdered: false,
+    isFinish: false,
+    isEdit: false
+    if (!text) return;
+    var id = 0;
+   
+    if (list.length) {
+      id = list[list.length - 1].id + 1;
+     
+    } else {
+      id = 1;
+    }
+    list.push({ id: id, content: text, isFinish: false, isEdit: false });
+    bindHtml();
+        
+   }
 });
 
 
