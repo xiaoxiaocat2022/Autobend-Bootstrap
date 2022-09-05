@@ -362,6 +362,11 @@ box.addEventListener("click", function (e) {
     list.splice(index,1);
         bindHtml();
   }
+  if (target.dataset.key === "clear-completed") {
+   
+   list=list.filter(t=>(t.jobType==target.dataset.type && !t.isFinish))
+        bindHtml();
+  }
 });
 
 
