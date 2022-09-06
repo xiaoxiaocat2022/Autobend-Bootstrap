@@ -34,17 +34,17 @@
       </section>
       <br />
 
-      <ul class="nav nav-pills" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-key="tabFlag" data-bs-toggle="pill" href="#CSM100"
-            >CSM100</a
+      <ul class="nav nav-pills" id= "pills-tab" stylerole="tablist">
+        <li class="nav-item" role="presentation">
+          <button type="button" id="pills-csm100-tab"class="nav-link active" data-key="tabFlag" data-bs-toggle="pill" data-bs-target="#pills-csm100" role="tab" aria-controls="pills-csm100" aria-selected="true"
+            >CSM100</button
           >
         </li>
-        <li class="nav-item">
-          <a class="nav-link " data-key="tabFlag" data-bs-toggle="pill" href="#CSM38">CSM38</a>
+        <li class="nav-item" role="presentation">
+          <button id="pills-csm38-tab"class="nav-link" data-key="tabFlag" data-bs-toggle="pill" data-bs-target="#pills-csm38" role="tab" aria-controls="pills-csm38" aria-selected="false">CSM38</button>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" data-key="tabFlag" data-bs-toggle="pill" href="#ENG">ENG</a>
+        <li class="nav-item" role="presentation">
+          <button id="pills-eng-tab"class="nav-link" data-key="tabFlag" data-bs-toggle="pill" data-bs-target="#pills-eng" role="tab" aria-controls="pills-csm38" aria-selected="false">ENG</a>
         </li>
       </ul>
 
@@ -64,8 +64,8 @@
     <script type="text/template" id="tmp">
                 <!-- 页面主体部分 -->
 
-            <div class="tab-content">
-              <div id="CSM100" class="container-sm tab-pane  active"><br>
+            <div class="tab-content" id="pills-tabContent">
+              <div id="pills-csm100" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-csm100-tab"><br>
                 <h3>CSM 100</h3>
                 <table class="table table-bordered table-striped table-responsive-sm p-0">
                   <thead>
@@ -142,7 +142,7 @@
 
               <!-- CSM38 -->
               
-              <div id="CSM38" class="container tab-pane fade "><br>
+              <div id="pills-csm38" class="tab-pane fade " role="tabpanel" aria-labelledby="pills-csm38-tab"><br>
                 <h3>CSM 38</h3>
 
                 <table class="table table-bordered table-striped table-responsive-sm p-0">
@@ -216,11 +216,11 @@
                   <button data-key="clear-completed" data-type="B" class="clear-completed btn-danger ms-3">Clear completed</button>
                   {{/if}}
                 </footer>
-      </div>
+              </div>
 
                 <!-- Engnieering -->
               
-                <div id="ENG" class="container tab-pane fade "><br>
+                <div id="pills-eng" class=" tab-pane fade " role="tabpanel" aria-labelledby="pills-eng-tab"><br>
                   <h3>Engnieering</h3>
 
                   <table class="table table-bordered table-striped table-responsive-sm p-0">
@@ -291,7 +291,7 @@
                     <button data-key="clear-completed" data-type="E" class="clear-completed btn-danger ms-3">Clear completed</button>
                     {{/if}}
                   </footer>
-                  </div>
+                </div>
     </script>
     <script src="js/app.js"></script>
   </body>

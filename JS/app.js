@@ -323,17 +323,42 @@ var list = [
 
 // var list = JSON.parse(window.localStorage.getItem('todos'))||[];
 var type = "all";
+const pillsTab= document.querySelector("#pills-tab");
+const pills =pillsTab.querySelectorAll('button[data-bs-toggle="pill"]');
+
+pills.forEach(pill=>{
+  pill.addEventListener('shown.bs.tab',(event)=>{
+    const {target} = event;
+    const{id:targetId}=target;
+    savePillId(targetId);
+  });
+
+})
+
+const savePillId = (selector) => {localStorage.setItem('activePillId',selector);}
+const getPillId =()=>{
+  console.log(pills);
+  const activePillId = localStorage.getItem('activePillId');
+  if(!activePillId) return;
+  const someTabTriggerEl= document.querySelector(`#${activePillId}`);
+  const tab = new bootstrap.Tab(someTabTriggerEl);
+  tab.show();
+}
+
+
+
 //box = container
 var box = document.querySelector(".todoapp");
 // box.innerHTML = template("tmp", {});
 bindHtml();
+
 // 2 Render function
 function bindHtml() {
   var bindlist = list;
 
-  let csm100IsActive=true;
-  let csm38IsActive=false;
-  let engIsActive=false;
+  // let csm100IsActive=true;
+  // let csm38IsActive=false;
+  // let engIsActive=false;
 
   switch (type) {
     case "all":
@@ -424,8 +449,8 @@ function bindHtml() {
   //   csm38IsActive=false;
   //   engIsActive=true;
   // }
-  let activePane= document.querySelector(".nav-pane, .active");
-  console.log(activePane)
+  // let activePane= document.querySelector(".nav-pane, .active");
+  // console.log(activePane)
  
 
   box.innerHTML = template("tmp", {
@@ -446,11 +471,11 @@ function bindHtml() {
     length: list.length,
     type: type,
   });
-  let panes = document.querySelectorAll(".nav-pane");
-  panes.forEach(t=>t.classlist.remove("active"));
-  activePane.classList.add("active");
-  console.log(activePane);
-
+  // let panes = document.querySelectorAll(".nav-pane");
+  // panes.forEach(t=>t.classlist.remove("active"));
+  // activePane.classList.add("active");
+  // console.log(activePane);
+  getPillId();
   window.localStorage.setItem("todos", JSON.stringify(list));
 }
 //根据地址栏哈希值改变显示
