@@ -323,6 +323,13 @@ var list = [
 
 // var list = JSON.parse(window.localStorage.getItem('todos'))||[];
 var type = "all";
+
+
+
+//box = container
+var box = document.querySelector(".todoapp");
+// box.innerHTML = template("tmp", {});
+bindHtml();
 const pillsTab= document.querySelector("#pills-tab");
 const pills =pillsTab.querySelectorAll('button[data-bs-toggle="pill"]');
 
@@ -339,18 +346,12 @@ const savePillId = (selector) => {localStorage.setItem('activePillId',selector);
 const getPillId =()=>{
   console.log(pills);
   const activePillId = localStorage.getItem('activePillId');
-  if(!activePillId) return;
+  if(!activePillId) return; //activePillId="csm-100";
   const someTabTriggerEl= document.querySelector(`#${activePillId}`);
   const tab = new bootstrap.Tab(someTabTriggerEl);
   tab.show();
 }
 
-
-
-//box = container
-var box = document.querySelector(".todoapp");
-// box.innerHTML = template("tmp", {});
-bindHtml();
 
 // 2 Render function
 function bindHtml() {
@@ -419,45 +420,11 @@ function bindHtml() {
   let bLength = bList.length;
   let eLength = eList.length;
 
-  // let tabs = document.querySelectorAll(".nav-link");
 
-  // let activeTab = document.querySelector(".nav-link,.active");
-  // tabs.forEach((t) => t.setAttribute("className", ".nav-link"));
-  // console.log(tabs);
-  // activeTab.setAttribute("className", ".nav-link,.active");
-
-  // let panes = document.querySelectorAll(".nav-pane");
-  // let activePane= document.querySelector(".nav-pane, .active");
-  // panes=Array.from(panes);
-  // activePane=[].slice.call(activePane);
-  // let index= panes.findIndex((t)=> t==activePane);
-  // console.log(index);
-  // console.log(activePane.attributes.className);
-  // if(index==0){
-  //   csm100IsActive=true;
-  //   csm38IsActive=false;
-  //   engIsActive=false;
-  // }
-  // if(index==1){
-  //   csm100IsActive=false;
-  //   csm38IsActive=true;
-  //   engIsActive=false;
-  // }
-
-  // if(index==2){
-  //   csm100IsActive=false;
-  //   csm38IsActive=false;
-  //   engIsActive=true;
-  // }
-  // let activePane= document.querySelector(".nav-pane, .active");
-  // console.log(activePane)
  
 
   box.innerHTML = template("tmp", {
     bindlist: bindlist,
-    // csm100IsActive,
-    // csm38IsActive,
-    // engIsActive,
     activeNum: activeNum,
     activeANum,
     activeBNum,
@@ -471,11 +438,8 @@ function bindHtml() {
     length: list.length,
     type: type,
   });
-  // let panes = document.querySelectorAll(".nav-pane");
-  // panes.forEach(t=>t.classlist.remove("active"));
-  // activePane.classList.add("active");
-  // console.log(activePane);
-  getPillId();
+
+  
   window.localStorage.setItem("todos", JSON.stringify(list));
 }
 //根据地址栏哈希值改变显示
@@ -545,6 +509,8 @@ box.addEventListener("click", function (e) {
       return t.id === id;
     });
     todo.isFinish = !todo.isFinish;
+    
+    getPillId();
     bindHtml();
   }
   if (target.dataset.key === "mandrelOD") {
