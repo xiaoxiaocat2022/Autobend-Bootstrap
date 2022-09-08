@@ -36,15 +36,15 @@
 
       <ul class="nav nav-pills" id= "pills-tab" stylerole="tablist">
         <li class="nav-item" role="presentation">
-          <button type="button" id="pills-csm100-tab"class="nav-link active" data-key="tabFlag" data-bs-toggle="pill" data-bs-target="#pills-csm100" role="tab" aria-controls="pills-csm100" aria-selected="true"
+          <button type="button" id="pills-csm100-tab"class="nav-link {{pillId=='pills-csm100-tab' ? "active":""}}" data-key="tabFlag" data-bs-toggle="pill" data-bs-target="#pills-csm100" role="tab" aria-controls="pills-csm100" aria-selected="true"
             >CSM100</button
           >
         </li>
         <li class="nav-item" role="presentation">
-          <button id="pills-csm38-tab"class="nav-link" data-key="tabFlag" data-bs-toggle="pill" data-bs-target="#pills-csm38" role="tab" aria-controls="pills-csm38" aria-selected="false">CSM38</button>
+          <button id="pills-csm38-tab"class="nav-link {{pillId=='pills-csm38-tab' ? "active":""}}" data-key="tabFlag" data-bs-toggle="pill" data-bs-target="#pills-csm38" role="tab" aria-controls="pills-csm38" aria-selected="false">CSM38</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button id="pills-eng-tab"class="nav-link" data-key="tabFlag" data-bs-toggle="pill" data-bs-target="#pills-eng" role="tab" aria-controls="pills-csm38" aria-selected="false">ENG</a>
+          <button id="pills-eng-tab"class="nav-link {{pillId=='pills-eng-tab' ? "active":""}}" data-key="tabFlag" data-bs-toggle="pill" data-bs-target="#pills-eng" role="tab" aria-controls="pills-csm38" aria-selected="false">ENG</a>
         </li>
       </ul>
 
@@ -67,7 +67,7 @@
                 <!-- 页面主体部分 -->
 
        
-              <div id="pills-csm100" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-csm100-tab"><br>
+              <div id="pills-csm100" class="tab-pane fade {{pillId=='pills-csm100-tab' ? "active show":""}}" role="tabpanel" aria-labelledby="pills-csm100-tab"><br>
                 <h3>CSM 100</h3>
                 <table class="table table-bordered table-striped table-responsive-sm p-0">
                   <thead>
@@ -144,7 +144,7 @@
 
               <!-- CSM38 -->
               
-              <div id="pills-csm38" class="tab-pane fade " role="tabpanel" aria-labelledby="pills-csm38-tab"><br>
+              <div id="pills-csm38" class="tab-pane fade {{pillId=='pills-csm38-tab' ? "active show":""}}" role="tabpanel" aria-labelledby="pills-csm38-tab"><br>
                 <h3>CSM 38</h3>
 
                 <table class="table table-bordered table-striped table-responsive-sm p-0">
@@ -222,7 +222,7 @@
 
                 <!-- Engnieering -->
               
-                <div id="pills-eng" class=" tab-pane fade " role="tabpanel" aria-labelledby="pills-eng-tab"><br>
+                <div id="pills-eng" class=" tab-pane fade {{pillId=='pills-eng-tab' ? "active show":""}}" role="tabpanel" aria-labelledby="pills-eng-tab"><br>
                   <h3>Engnieering</h3>
 
                   <table class="table table-bordered table-striped table-responsive-sm p-0">

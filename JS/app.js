@@ -330,6 +330,7 @@ var type = "all";
 var box = document.querySelector(".todoapp");
 // box.innerHTML = template("tmp", {});
 bindHtml();
+
 const pillsTab= document.querySelector("#pills-tab");
 const pills =pillsTab.querySelectorAll('button[data-bs-toggle="pill"]');
 
@@ -349,6 +350,7 @@ const getPillId =()=>{
   if(!activePillId) return; //activePillId="csm-100";
   const someTabTriggerEl= document.querySelector(`#${activePillId}`);
   const tab = new bootstrap.Tab(someTabTriggerEl);
+ 
   tab.show();
 }
 
@@ -356,10 +358,6 @@ const getPillId =()=>{
 // 2 Render function
 function bindHtml() {
   var bindlist = list;
-
-  // let csm100IsActive=true;
-  // let csm38IsActive=false;
-  // let engIsActive=false;
 
   switch (type) {
     case "all":
@@ -422,9 +420,10 @@ function bindHtml() {
 
 
  
-
+  let pillId= localStorage.getItem('activePillId')||"pills-csm100-tab";
   box.innerHTML = template("tmp", {
     bindlist: bindlist,
+    pillId,
     activeNum: activeNum,
     activeANum,
     activeBNum,
@@ -438,6 +437,9 @@ function bindHtml() {
     length: list.length,
     type: type,
   });
+
+  console.log(bLength);
+  console.log(pillId);
 
   
   window.localStorage.setItem("todos", JSON.stringify(list));
@@ -510,8 +512,9 @@ box.addEventListener("click", function (e) {
     });
     todo.isFinish = !todo.isFinish;
     
-    getPillId();
+    
     bindHtml();
+    
   }
   if (target.dataset.key === "mandrelOD") {
     let id = target.dataset.id - 0;
@@ -584,9 +587,11 @@ box.addEventListener("click", function (e) {
     bindHtml();
   }
   if (target.dataset.key === "clear-completed") {
-    list = list.filter((t) => t.jobType == target.dataset.type && !t.isFinish);
+    list = list.filter((t) => (t.jobType != target.dataset.type || !t.isFinish));
     bindHtml();
   }
+
+  //add
   if (target.dataset.key === "add") {
     let customer = document.getElementById("customer").value.trim();
     let jobName = document.getElementById("job").value.trim();
